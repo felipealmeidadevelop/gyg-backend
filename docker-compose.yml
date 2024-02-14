@@ -1,0 +1,19 @@
+version: '3'
+services:
+  db:
+    image: postgres
+    container_name: gygdb
+    environment:
+      POSTGRES_PASSWORD: sisgygdb
+    ports:
+      - "5432:5432"
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: gyg-backend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
